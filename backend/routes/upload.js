@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { exec } = require('child_process');
+const compile = require('../compile');
 
 router.post('/', async (req, res) => {
   try {
@@ -12,24 +12,7 @@ router.post('/', async (req, res) => {
     } else {
       console.log(req.files);
       req.files.avatar.mv("./tmp/" + req.files.avatar.name, () => {
-        exec(`gcc -o ./tmp/exec/${req.files.avatar.name} ./tmp/${req.files.avatar.name} ; ./tmp/exec/${req.files.avatar.name}`, (err, stdout, stderr) => {
-          if (err) {
-            console.log(`err: ${err}`);
-            res.send({
-              status: ''
-            })
-            return;
-          }
-          if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return
-          }
-          console.log(`compile output: ${stdout}`);
-          res.send({
-            status: "ok",
-            output: stdout
-          });
-        })
+        compile(req, res, req.files.avatar.name);
       });
     }
   } catch (ex) {
