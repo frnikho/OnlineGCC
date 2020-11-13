@@ -10,7 +10,8 @@ router.post('/', async (req, res) => {
            res.send({message: 'need json body !'});
            return;
        } else {
-           let name = uuidv4() + ".c";
+           let name = uuidv4().substring(0, 5) + ".c";
+           console.log(req.body.content);
            fs.writeFile("./tmp/" + name, req.body.content, (err) => {
                if (err != null) {
                    console.log(err);

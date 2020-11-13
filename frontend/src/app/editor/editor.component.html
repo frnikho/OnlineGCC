@@ -1,4 +1,40 @@
-<ngx-codemirror
-  [(ngModel)]="content"
-  [options]="option"
-></ngx-codemirror>
+<div class="main_container" (keydown)="onKeyDown($event)">
+  <mat-toolbar color="primary">
+    <span>Malloc Editor</span>
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-icon-button><mat-icon>settings</mat-icon></button>
+  </mat-toolbar>
+  <ngx-codemirror
+    [(ngModel)]="content"
+    [options]="option"
+  ></ngx-codemirror>
+  <div class="row" style="height: 200px; margin: 4px">
+    <div class="col-sm" *ngIf="error != undefined">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-danger">Error</h5>
+          <p class="card-text" style="font-size: 12px; margin: 0; padding: 0" *ngFor="let out of error">{{ out }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" *ngIf="output != undefined">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Output</h5>
+          <p class="card-text" style="font-size: 12px; margin: 0; padding: 0" *ngFor="let out of output">{{ out }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" *ngIf="warning != undefined">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-warning">Warning</h5>
+          <p class="card-text" style="font-size: 12px; margin: 0; padding: 0" *ngFor="let out of warning">{{ out }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button mat-flat-button color="primary" (click)="submit()">Submit</button>
+
+</div>

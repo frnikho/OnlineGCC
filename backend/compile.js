@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 
 const execute = (req, res, fileName) => {
-    exec(`gcc -o ./tmp/exec/${fileName} ./tmp/${fileName} ; ./tmp/exec/${fileName}`, (err, stdout, stderr) => {
+    exec(`gcc -o ./tmp/exec/${fileName} ./tmp/${fileName} && ./tmp/exec/${fileName}`, (err, stdout, stderr) => {
         if (err) {
             console.log(`err: ${err}`);
             res.send({
@@ -21,7 +21,7 @@ const execute = (req, res, fileName) => {
             output: stdout
         };
         if (resstderr != null)
-            response['stderr'] = resstderr;
+            response['warning'] = resstderr;
         res.send(response);
     })
 }

@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
     "@ctrl/ngx-codemirror": "^4.0.2",
+    "bootstrap": "^4.5.3",
     "codemirror": "^5.58.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
