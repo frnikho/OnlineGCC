@@ -24,6 +24,8 @@
     "@ctrl/ngx-codemirror": "^4.0.2",
     "bootstrap": "^4.5.3",
     "codemirror": "^5.58.2",
+    "gson": "^0.1.5",
+    "ngx-cookie-service": "^10.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

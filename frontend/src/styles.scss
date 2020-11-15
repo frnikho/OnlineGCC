@@ -36,6 +36,19 @@ $frontend-theme: mat-light-theme((
 /* You can add global styles to this file, and also import other style files */
 @import "~codemirror/lib/codemirror.css";
 @import "~codemirror/theme/material.css";
+@import "~codemirror/theme/neo.css";
+@import "~codemirror/theme/base16-dark.css";
+@import "~codemirror/theme/3024-day.css";
+@import "~codemirror/theme/3024-night.css";
+@import "~codemirror/theme/yeti.css";
+@import "~codemirror/theme/zenburn.css";
+@import "~codemirror/theme/yonce.css";
+@import "~codemirror/theme/xq-light.css";
+@import "~codemirror/theme/xq-dark.css";
+
+.CodeMirror {
+  height: 500px;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
