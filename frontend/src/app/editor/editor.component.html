@@ -2,7 +2,10 @@
   <mat-toolbar color="primary">
     <span>Online C Compileur</span>
     <span style="flex: 1 1 auto;"></span>
-    <button mat-button matTooltip="Run (Alt + Enter)" (click)="submit()">Run <mat-icon>play_arrow</mat-icon></button>
+    <button mat-button matTooltip="Run (Alt + Enter)" (click)="submit()">Run
+      <mat-icon *ngIf="!isLoading">play_arrow</mat-icon>
+      <mat-icon *ngIf="isLoading">refresh</mat-icon>
+    </button>
     <button mat-icon-button (click)="open()"><mat-icon>settings</mat-icon></button>
   </mat-toolbar>
   <ngx-codemirror
@@ -10,6 +13,9 @@
     [(ngModel)]="content"
     [options]="option"
   ></ngx-codemirror>
+  <div *ngIf="isLoading" style="margin: 14px">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <div class="row" style="height: 200px; margin: 4px">
     <div class="col-sm" *ngIf="error != undefined">
       <div class="card">

@@ -21,7 +21,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
@@ -44,7 +46,9 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatCheckboxModule,
     MatFormFieldModule,
+    MatProgressBarModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     MatInputModule,
     BrowserAnimationsModule

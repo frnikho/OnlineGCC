@@ -26,9 +26,11 @@ export class EditorComponent implements OnInit {
   error = [];
   lineNumber: true;
   option;
+  isLoading: boolean;
 
   constructor(private http: HttpClient, private dialog: MatDialog, private cookieServer: CookieService) {
     this.content = this.cookieServer.get('content');
+    this.isLoading = true;
     if (this.cookieServer.check('settings')) {
       console.log('COOCKIE SETTINGS');
       this.settings = JSON.parse(this.cookieServer.get('settings'));
@@ -56,6 +58,7 @@ export class EditorComponent implements OnInit {
       tabSize: this.settings?.tabSize,
       readOnly: false
     };
+    this.isLoading = false;
   }
 
   open(): void {
@@ -68,7 +71,7 @@ export class EditorComponent implements OnInit {
   }
 
   async submit(): Promise<void> {
-    console.log(this.output === undefined);
+    this.isLoading = true;
     const response: any = await this.http.post('https://app.malloc.studio:3030/uploadjson',
       {content: this.content}, {headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
@@ -78,7 +81,7 @@ export class EditorComponent implements OnInit {
     this.warning = response.warning?.split('\n');
     this.error = response.error?.split('\n');
     this.cookieServer.set('content', `${this.content}`);
-    console.log(JSON.stringify(this.settings));
+    this.isLoading = false;
   }
 
   onKeyDown(event: any): void {
