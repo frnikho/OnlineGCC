@@ -9,14 +9,18 @@ process.on("message", message => {
 });
 
 function compileGcc(fileName, callback) {
-    exec(`ulimit -v 80960 && gcc -o ./tmp/exec/${fileName} ./tmp/${fileName} && timeout 10s ./tmp/exec/${fileName}`, {uid: 1003, timeout: 15}, (err, stdout, stderr) => {
+    exec(`ulimit -v 80960 && gcc -o ./tmp/exec/${fileName} ./tmp/${fileName} && timeout 10s ./tmp/exec/${fileName}`, (err, stdout, stderr) => {
         let response = {
             output: stdout,
             error: err,
             warning: stderr
         };
-        if (err.code === 124)
+        if (err != null && err.code === 124) {
             response.error = "Timeout ! (+10s)"
+        } else if (err != null && response.warning != null) {
+            response.error = response.warning;
+            response.warning = '';
+        }
         callback(response);
     });
 }

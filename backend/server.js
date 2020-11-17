@@ -28,6 +28,7 @@ const deploy = (app) => {
         cert: certificate
     };
     https.createServer(option, app).listen(3030);
+    console.log("app running ! open https://localhost:3030/");
 }
 
 module.exports = {dev, deploy}
